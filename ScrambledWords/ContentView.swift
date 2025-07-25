@@ -6,6 +6,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var letters: [String] = ["R", "A", "R", "B", "K","L"]
+    
+    
+    
+    
     var body: some View {
         
         GeometryReader { proxy in
@@ -46,11 +52,9 @@ struct ContentView: View {
                         .foregroundStyle(Color.white)
                     
                     HStack {
-                        LetterView(character: "O")
-                        LetterView(character: "A")
-                        LetterView(character: "B")
-                        LetterView(character: "C")
-                        LetterView(character: "R")
+                        ForEach(letters, id: \.self) { letter in
+                            LetterView(character: letter)
+                        }
                     }
                 }
             }
