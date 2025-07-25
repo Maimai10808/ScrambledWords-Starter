@@ -74,12 +74,15 @@ struct ContentView: View {
                                         guessedLetters.append(letter)
                                         letters[index].text = ""
                                         if guessedLetters.count == letters.count {
+                                            
                                             // evaluate if right or wrong
                                             
-                                            var guessedAnswer = ""
-                                            for guessedLetter in guessedLetters {
-                                                guessedAnswer += guessedLetter.text
-                                            }
+//                                            var guessedAnswer = ""
+//                                            for guessedLetter in guessedLetters {
+//                                                guessedAnswer += guessedLetter.text
+//                                            }
+                                            
+                                            let guessedAnswer = guessedLetters.map { $0.text }.joined()
                                             
                                             if guessedAnswer == correctAnwer {
                                                 print("correct")
