@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048785582E33E08B0031DBCA /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048785572E33E08B0031DBCA /* Question.swift */; };
 		04B78FCD2E332DBC004E30A0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B78FCC2E332DBC004E30A0 /* Colors.xcassets */; };
 		04B78FCF2E3336A1004E30A0 /* LetterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B78FCE2E3336A1004E30A0 /* LetterView.swift */; };
 		04B78FD22E339DB0004E30A0 /* LetterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B78FD12E339DB0004E30A0 /* LetterModel.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		048785572E33E08B0031DBCA /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		04B78FCC2E332DBC004E30A0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		04B78FCE2E3336A1004E30A0 /* LetterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterView.swift; sourceTree = "<group>"; };
 		04B78FD12E339DB0004E30A0 /* LetterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterModel.swift; sourceTree = "<group>"; };
@@ -42,6 +44,7 @@
 			isa = PBXGroup;
 			children = (
 				04B78FD12E339DB0004E30A0 /* LetterModel.swift */,
+				048785572E33E08B0031DBCA /* Question.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048785582E33E08B0031DBCA /* Question.swift in Sources */,
 				20A5001B2B4E6D630061CC1B /* ContentView.swift in Sources */,
 				04B78FD22E339DB0004E30A0 /* LetterModel.swift in Sources */,
 				04B78FCF2E3336A1004E30A0 /* LetterView.swift in Sources */,
