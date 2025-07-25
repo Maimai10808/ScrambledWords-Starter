@@ -9,7 +9,7 @@ struct ContentView: View {
     
     @State var letters: [String] = ["R", "A", "R", "B", "K","L"]
     
-    
+    @State var guessedLetters: [String] = []
     
     
     var body: some View {
@@ -32,11 +32,13 @@ struct ContentView: View {
                     Spacer()
                         
                         HStack {
-                            VStack {
-                                LetterView(character: "")
-                                Rectangle()
-                                    .fill(Color.white)
-                                    .frame(width: 25, height: 2)
+                            ForEach(guessedLetters, id: \.self) { letter in
+                                VStack {
+                                    LetterView(character: letter)
+                                    Rectangle()
+                                        .fill(Color.white)
+                                        .frame(width: 25, height: 2)
+                                }
                             }
                         }
                         .padding(.bottom, 20)
@@ -54,8 +56,13 @@ struct ContentView: View {
                     HStack {
                         ForEach(letters, id: \.self) { letter in
                             LetterView(character: letter)
+                                .onTapGesture {
+                                    guessedLetters.append(letter)
+                                }
                         }
                     }
+                    
+                    
                 }
             }
         }
