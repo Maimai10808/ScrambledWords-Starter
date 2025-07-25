@@ -10,9 +10,9 @@ import SwiftUI
 
 struct LetterView: View {
     
-    @State var  character: String
+    @State var letter: Letter
     var body: some View {
-        Text(character)
+        Text(letter.text)
                 .font(.system(size: 15, weight: .semibold))
                 .foregroundStyle(Color.white)
                 .frame(width: 30, height: 30)

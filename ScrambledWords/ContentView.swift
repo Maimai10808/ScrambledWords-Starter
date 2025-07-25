@@ -7,9 +7,16 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var letters: [String] = ["R", "A", "R", "B", "K","L"]
+    @State var letters: [Letter] = [
+        Letter(id: 0, text: "A"),
+        Letter(id: 1, text: "O"),
+        Letter(id: 2, text: "E"),
+        Letter(id: 3, text: "R"),
+        Letter(id: 4, text: "N"),
+        Letter(id: 5, text: "G")
+    ]
     
-    @State var guessedLetters: [String] = []
+    @State var guessedLetters: [Letter] = []
     
     
     var body: some View {
@@ -32,9 +39,9 @@ struct ContentView: View {
                     Spacer()
                         
                         HStack {
-                            ForEach(guessedLetters, id: \.self) { letter in
+                            ForEach(guessedLetters) { letter in
                                 VStack {
-                                    LetterView(character: letter)
+                                    LetterView(letter: letter)
                                     Rectangle()
                                         .fill(Color.white)
                                         .frame(width: 25, height: 2)
@@ -55,16 +62,15 @@ struct ContentView: View {
                     
                     HStack {
                         ForEach(Array(letters.enumerated()), id: \.1) { index, letter in
-                            LetterView(character: letter)
+                            LetterView(letter: letter)
                                 .onTapGesture {
-                                    if !letter.isEmpty {
+                                    if !letter.text.isEmpty {
                                         guessedLetters.append(letter)
-                                        letters[index] = ""
-                                    }
-                                    
+                                        letters[index].text = ""
+                                  }
                                 }
-                        }
-                    }
+                             }
+                          }
                     
                     
                 }
