@@ -14,10 +14,27 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 
                 VStack {
+                    
                     VStack {
+                        
+                    Spacer()
+                        
                         Image("orange")
                             .resizable()
                             .frame(width: 100, height: 100)
+                        
+                    Spacer()
+                        
+                        HStack {
+                            VStack {
+                                LetterView(character: "")
+                                Rectangle()
+                                    .fill(Color.white)
+                                    .frame(width: 25, height: 2)
+                            }
+                        }
+                        .padding(.bottom, 20)
+                       
                     }
                     .frame(width: proxy.size.width * 0.9,height: proxy.size.width * 0.9)
                     .overlay {
