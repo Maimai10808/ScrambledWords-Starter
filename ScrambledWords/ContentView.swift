@@ -17,6 +17,10 @@ struct ContentView: View {
     ]
     
     @State var guessedLetters: [Letter] = []
+    @State var alertTitle = ""
+    @State var alertMessage = ""
+    @State var showAlert = false
+    
     let correctAnwer = "ORANGE"
     
     var body: some View {
@@ -86,8 +90,15 @@ struct ContentView: View {
                                             
                                             if guessedAnswer == correctAnwer {
                                                 print("correct")
+                                                alertTitle   = "Correct"
+                                                alertMessage = "You got the right answer!"
+                                                showAlert    = true
+                                                
                                             } else {
-                                                print("error")
+                                                alertTitle   = "Wrong"
+                                                alertMessage = "You got the wrong answer!"
+                                                showAlert    = true
+                                                print("wrong")
                                             }
                                         }
                                   }
@@ -97,6 +108,13 @@ struct ContentView: View {
                         }
                     }
                 }
+        .alert(alertTitle, isPresented: $showAlert) {
+            Button("OK") {
+                
+            }
+        } message: {
+            Text(alertMessage)
+        }
         
             }
         }
