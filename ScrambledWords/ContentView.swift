@@ -17,105 +17,108 @@ struct ContentView: View {
     ]
     
     @State var guessedLetters: [Letter] = []
-    @State var alertTitle = ""
-    @State var alertMessage = ""
-    @State var showAlert = false
+    @State var showSuccess = false
+    @State var showFailure = false
     
     let correctAnwer = "ORANGE"
     
     var body: some View {
-        
-        GeometryReader { proxy in
-            ZStack {
-                Color.backgroud
-                    .ignoresSafeArea()
-                
-                VStack {
+            GeometryReader { proxy in
+                ZStack {
+                    Color.backgroud
+                        .ignoresSafeArea()
                     
                     VStack {
                         
-                    Spacer()
-                        
-                        Image("orange")
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                        
-                    Spacer()
-                        
-                        HStack {
-                            ForEach(guessedLetters) { guessedLetter in
-                                VStack {
-                                    LetterView(letter: guessedLetter)
-                                        .onTapGesture {
-                                            if let index = guessedLetters.firstIndex(of: guessedLetter) {
-                                                guessedLetters.remove(at: index)
-                                                letters[guessedLetter.id].text = guessedLetter.text
+                        VStack {
+                            
+                            Spacer()
+                            
+                            Image("orange")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                            
+                            Spacer()
+                            
+                            HStack {
+                                ForEach(guessedLetters) { guessedLetter in
+                                    VStack {
+                                        LetterView(letter: guessedLetter)
+                                            .onTapGesture {
+                                                if let index = guessedLetters.firstIndex(of: guessedLetter) {
+                                                    guessedLetters.remove(at: index)
+                                                    letters[guessedLetter.id].text = guessedLetter.text
+                                                }
                                             }
-                                        }
-                                    Rectangle()
-                                        .fill(Color.white)
-                                        .frame(width: 25, height: 2)
+                                        Rectangle()
+                                            .fill(Color.white)
+                                            .frame(width: 25, height: 2)
+                                    }
                                 }
                             }
+                            .padding(.bottom, 20)
+                            
                         }
-                        .padding(.bottom, 20)
-                       
-                    }
-                    .frame(width: proxy.size.width * 0.9,height: proxy.size.width * 0.9)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.border, lineWidth: 2)
-                    }
-                    Text("Score 0")
-                        .font(.system(size: 15))
-                        .foregroundStyle(Color.white)
-                    
-                    HStack {
-                        ForEach(Array(letters.enumerated()), id: \.1) { index, letter in
-                            LetterView(letter: letter)
-                                .onTapGesture {
-                                    if !letter.text.isEmpty {
-                                        guessedLetters.append(letter)
-                                        letters[index].text = ""
-                                        if guessedLetters.count == letters.count {
-                                            
-                                            // evaluate if right or wrong
-                                            
-//                                            var guessedAnswer = ""
-//                                            for guessedLetter in guessedLetters {
-//                                                guessedAnswer += guessedLetter.text
-//                                            }
-                                            
-                                            let guessedAnswer = guessedLetters.map { $0.text }.joined()
-                                            
-                                            if guessedAnswer == correctAnwer {
-                                                print("correct")
-                                                alertTitle   = "Correct"
-                                                alertMessage = "You got the right answer!"
-                                                showAlert    = true
+                        .frame(width: proxy.size.width * 0.9,height: proxy.size.width * 0.9)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.border, lineWidth: 2)
+                        }
+                        Text("Score 0")
+                            .font(.system(size: 15))
+                            .foregroundStyle(Color.white)
+                        
+                        HStack {
+                            ForEach(Array(letters.enumerated()), id: \.1) { index, letter in
+                                LetterView(letter: letter)
+                                    .onTapGesture {
+                                        if !letter.text.isEmpty {
+                                            guessedLetters.append(letter)
+                                            letters[index].text = ""
+                                            if guessedLetters.count == letters.count {
                                                 
-                                            } else {
-                                                alertTitle   = "Wrong"
-                                                alertMessage = "You got the wrong answer!"
-                                                showAlert    = true
-                                                print("wrong")
+                                                let guessedAnswer = guessedLetters.map { $0.text }.joined()
+                                                
+                                                if guessedAnswer == correctAnwer {
+                                                    showSuccess = true
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                                        showSuccess = false
+                                                    }
+                                                    print("correct")
+                                                    
+                                                } else {
+                                                    showFailure = true
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                                        showFailure = false
+                                                    }
+                                                    print("wrong")
+                                                }
                                             }
                                         }
-                                  }
-                                }
-                             }
-                          }
+                                    }
+                            }
                         }
                     }
+                    
+                    if showFailure {
+                        VStack {
+                            Image("cross")
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.black.opacity(0.3))
+                    }
+                    
+                    if showSuccess {
+                        VStack {
+                            Image("tick")
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.black.opacity(0.3))
+                    }
+                    
+                    
                 }
-        .alert(alertTitle, isPresented: $showAlert) {
-            Button("OK") {
-                
             }
-        } message: {
-            Text(alertMessage)
-        }
-        
             }
         }
 
