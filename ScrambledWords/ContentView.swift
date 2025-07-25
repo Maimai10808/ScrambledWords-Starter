@@ -27,6 +27,14 @@ struct ContentView: View {
                     Text("Score 0")
                         .font(.system(size: 15))
                         .foregroundStyle(Color.white)
+                    
+                    HStack {
+                        LetterView(character: "O")
+                        LetterView(character: "A")
+                        LetterView(character: "B")
+                        LetterView(character: "C")
+                        LetterView(character: "R")
+                    }
                 }
             }
         }

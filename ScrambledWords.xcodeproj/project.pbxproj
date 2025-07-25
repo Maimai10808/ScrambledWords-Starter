@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04B78FCD2E332DBC004E30A0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B78FCC2E332DBC004E30A0 /* Colors.xcassets */; };
+		04B78FCF2E3336A1004E30A0 /* LetterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B78FCE2E3336A1004E30A0 /* LetterView.swift */; };
 		20A500192B4E6D630061CC1B /* ScrambledWordsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A500182B4E6D630061CC1B /* ScrambledWordsApp.swift */; };
 		20A5001B2B4E6D630061CC1B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5001A2B4E6D630061CC1B /* ContentView.swift */; };
 		20A5001D2B4E6D6D0061CC1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20A5001C2B4E6D6D0061CC1B /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		04B78FCC2E332DBC004E30A0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		04B78FCE2E3336A1004E30A0 /* LetterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterView.swift; sourceTree = "<group>"; };
 		20A500152B4E6D630061CC1B /* ScrambledWords.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrambledWords.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20A500182B4E6D630061CC1B /* ScrambledWordsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrambledWordsApp.swift; sourceTree = "<group>"; };
 		20A5001A2B4E6D630061CC1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			children = (
 				20A500182B4E6D630061CC1B /* ScrambledWordsApp.swift */,
 				20A5001A2B4E6D630061CC1B /* ContentView.swift */,
+				04B78FCE2E3336A1004E30A0 /* LetterView.swift */,
 				20A5001C2B4E6D6D0061CC1B /* Assets.xcassets */,
 				20A5001E2B4E6D6D0061CC1B /* Preview Content */,
 				04B78FCC2E332DBC004E30A0 /* Colors.xcassets */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20A5001B2B4E6D630061CC1B /* ContentView.swift in Sources */,
+				04B78FCF2E3336A1004E30A0 /* LetterView.swift in Sources */,
 				20A500192B4E6D630061CC1B /* ScrambledWordsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
