@@ -12,34 +12,10 @@ struct GameView: View {
     @State private var showFailure = false
     @State private var score: Int  = 0
     
-    @State var questions: [Question] = [
-        Question(image: "orange", scrambledletters: [
-            Letter(id: 0, text: "A"),
-            Letter(id: 1, text: "O"),
-            Letter(id: 2, text: "E"),
-            Letter(id: 3, text: "R"),
-            Letter(id: 4, text: "N"),
-            Letter(id: 5, text: "G")
-        ], Answer: "ORANGE"),
-        Question(image: "banana", scrambledletters: [
-            Letter(id: 0, text: "A"),
-            Letter(id: 1, text: "A"),
-            Letter(id: 2, text: "N"),
-            Letter(id: 3, text: "B"),
-            Letter(id: 4, text: "N"),
-            Letter(id: 5, text: "A")
-        ], Answer: "BANANA"),
-        Question(image: "apple", scrambledletters: [
-            Letter(id: 0, text: "A"),
-            Letter(id: 1, text: "L"),
-            Letter(id: 2, text: "E"),
-            Letter(id: 3, text: "P"),
-            Letter(id: 4, text: "P")
-        ], Answer: "APPLE")
-        
-    ]
+    @State var questions: [Question] = Question.generateQuestion()
     
     @State private var currentQuestionIndex = 0
+    @State private var showFinalScore = false
     
     var body: some View {
             GeometryReader { proxy in
@@ -104,7 +80,7 @@ struct GameView: View {
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                                         showSuccess = false
                                                         if currentQuestionIndex == questions.count - 1 {
-                                                            
+                                                            showFinalScore = true
                                                         } else {
                                                             currentQuestionIndex += 1
                                                         }
@@ -117,7 +93,7 @@ struct GameView: View {
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                                         showFailure = false
                                                         if currentQuestionIndex == questions.count - 1 {
-                                                            
+                                                            showFinalScore = true
                                                         } else {
                                                             currentQuestionIndex += 1
                                                         }
@@ -152,6 +128,13 @@ struct GameView: View {
                     
                     
                 }
+            }
+            .sheet(isPresented: $showFinalScore) {
+                questions = Question.generateQuestion()
+                currentQuestionIndex = 0
+                score = 0
+            } content: {
+                ScoreView(score: score, questionCount: questions.count)
             }
             }
         }

@@ -47,6 +47,7 @@
 			children = (
 				048785592E33E5DC0031DBCA /* ScoreView.swift */,
 				04B78FCE2E3336A1004E30A0 /* LetterView.swift */,
+				20A5001A2B4E6D630061CC1B /* GameView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -82,7 +83,6 @@
 				0487855B2E33E5E90031DBCA /* Views */,
 				04B78FD02E339D9D004E30A0 /* Models */,
 				20A500182B4E6D630061CC1B /* ScrambledWordsApp.swift */,
-				20A5001A2B4E6D630061CC1B /* GameView.swift */,
 				20A5001C2B4E6D6D0061CC1B /* Assets.xcassets */,
 				20A5001E2B4E6D6D0061CC1B /* Preview Content */,
 				04B78FCC2E332DBC004E30A0 /* Colors.xcassets */,
