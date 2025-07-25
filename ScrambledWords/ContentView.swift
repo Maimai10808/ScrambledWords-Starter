@@ -17,7 +17,7 @@ struct ContentView: View {
     ]
     
     @State var guessedLetters: [Letter] = []
-    
+    let correctAnwer = "ORANGE"
     
     var body: some View {
         
@@ -73,6 +73,20 @@ struct ContentView: View {
                                     if !letter.text.isEmpty {
                                         guessedLetters.append(letter)
                                         letters[index].text = ""
+                                        if guessedLetters.count == letters.count {
+                                            // evaluate if right or wrong
+                                            
+                                            var guessedAnswer = ""
+                                            for guessedLetter in guessedLetters {
+                                                guessedAnswer += guessedLetter.text
+                                            }
+                                            
+                                            if guessedAnswer == correctAnwer {
+                                                print("correct")
+                                            } else {
+                                                print("error")
+                                            }
+                                        }
                                   }
                                 }
                              }
