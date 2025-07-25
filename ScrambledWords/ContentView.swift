@@ -39,9 +39,15 @@ struct ContentView: View {
                     Spacer()
                         
                         HStack {
-                            ForEach(guessedLetters) { letter in
+                            ForEach(guessedLetters) { guessedLetter in
                                 VStack {
-                                    LetterView(letter: letter)
+                                    LetterView(letter: guessedLetter)
+                                        .onTapGesture {
+                                            if let index = guessedLetters.firstIndex(of: guessedLetter) {
+                                                guessedLetters.remove(at: index)
+                                                letters[guessedLetter.id].text = guessedLetter.text
+                                            }
+                                        }
                                     Rectangle()
                                         .fill(Color.white)
                                         .frame(width: 25, height: 2)
@@ -71,14 +77,12 @@ struct ContentView: View {
                                 }
                              }
                           }
-                    
-                    
+                        }
+                    }
                 }
+        
             }
         }
-        
-    }
-}
 
 #Preview {
     ContentView()
