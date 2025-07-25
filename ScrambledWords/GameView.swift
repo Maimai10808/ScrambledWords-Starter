@@ -5,23 +5,12 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
-//    @State var letters: [Letter] = [
-//        Letter(id: 0, text: "A"),
-//        Letter(id: 1, text: "O"),
-//        Letter(id: 2, text: "E"),
-//        Letter(id: 3, text: "R"),
-//        Letter(id: 4, text: "N"),
-//        Letter(id: 5, text: "G")
-//    ]
+struct GameView: View {
     
     @State private var guessedLetters: [Letter] = []
     @State private var showSuccess = false
     @State private var showFailure = false
-    @State private var score: Int = 0
-    
-//    let correctAnswer = "ORANGE"
+    @State private var score: Int  = 0
     
     @State var questions: [Question] = [
         Question(image: "orange", scrambledletters: [
@@ -168,5 +157,5 @@ struct ContentView: View {
         }
 
 #Preview {
-    ContentView()
+    GameView()
 }
