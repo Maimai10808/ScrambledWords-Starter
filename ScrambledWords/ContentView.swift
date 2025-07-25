@@ -114,6 +114,12 @@ struct ContentView: View {
                                                     showSuccess = true
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                                         showSuccess = false
+                                                        if currentQuestionIndex == questions.count - 1 {
+                                                            
+                                                        } else {
+                                                            currentQuestionIndex += 1
+                                                        }
+                                                        
                                                     }
                                                     print("correct")
                                                     
@@ -121,9 +127,17 @@ struct ContentView: View {
                                                     showFailure = true
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                                         showFailure = false
+                                                        if currentQuestionIndex == questions.count - 1 {
+                                                            
+                                                        } else {
+                                                            currentQuestionIndex += 1
+                                                        }
+                                                        
                                                     }
                                                     print("wrong")
                                                 }
+                                                guessedLetters.removeAll()
+                                                
                                             }
                                         }
                                     }
