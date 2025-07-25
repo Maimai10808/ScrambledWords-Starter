@@ -19,6 +19,7 @@ struct ContentView: View {
     @State var guessedLetters: [Letter] = []
     @State var showSuccess = false
     @State var showFailure = false
+    @State var score: Int = 0
     
     let correctAnwer = "ORANGE"
     
@@ -64,7 +65,7 @@ struct ContentView: View {
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.border, lineWidth: 2)
                         }
-                        Text("Score 0")
+                        Text("Score \(score)")
                             .font(.system(size: 15))
                             .foregroundStyle(Color.white)
                         
@@ -80,6 +81,7 @@ struct ContentView: View {
                                                 let guessedAnswer = guessedLetters.map { $0.text }.joined()
                                                 
                                                 if guessedAnswer == correctAnwer {
+                                                    score += 1
                                                     showSuccess = true
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                                         showSuccess = false
