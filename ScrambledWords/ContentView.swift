@@ -7,21 +7,23 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var letters: [Letter] = [
-        Letter(id: 0, text: "A"),
-        Letter(id: 1, text: "O"),
-        Letter(id: 2, text: "E"),
-        Letter(id: 3, text: "R"),
-        Letter(id: 4, text: "N"),
-        Letter(id: 5, text: "G")
-    ]
+//    @State var letters: [Letter] = [
+//        Letter(id: 0, text: "A"),
+//        Letter(id: 1, text: "O"),
+//        Letter(id: 2, text: "E"),
+//        Letter(id: 3, text: "R"),
+//        Letter(id: 4, text: "N"),
+//        Letter(id: 5, text: "G")
+//    ]
     
-    @State var guessedLetters: [Letter] = []
-    @State var showSuccess = false
-    @State var showFailure = false
-    @State var score: Int = 0
+    @State private var guessedLetters: [Letter] = []
+    @State private var showSuccess = false
+    @State private var showFailure = false
+    @State private var score: Int = 0
     
-    var questions: [Question] = [
+//    let correctAnswer = "ORANGE"
+    
+    @State var questions: [Question] = [
         Question(image: "orange", scrambledletters: [
             Letter(id: 0, text: "A"),
             Letter(id: 1, text: "O"),
@@ -48,6 +50,8 @@ struct ContentView: View {
         
     ]
     
+    @State private var currentQuestionIndex = 0
+    
     var body: some View {
             GeometryReader { proxy in
                 ZStack {
@@ -60,7 +64,7 @@ struct ContentView: View {
                             
                             Spacer()
                             
-                            Image("orange")
+                            Image(questions[currentQuestionIndex].image)
                                 .resizable()
                                 .frame(width: 100, height: 100)
                             
@@ -73,7 +77,7 @@ struct ContentView: View {
                                             .onTapGesture {
                                                 if let index = guessedLetters.firstIndex(of: guessedLetter) {
                                                     guessedLetters.remove(at: index)
-                                                    letters[guessedLetter.id].text = guessedLetter.text
+                                                    questions[currentQuestionIndex].scrambledletters[guessedLetter.id].text = guessedLetter.text
                                                 }
                                             }
                                         Rectangle()
@@ -95,17 +99,17 @@ struct ContentView: View {
                             .foregroundStyle(Color.white)
                         
                         HStack {
-                            ForEach(Array(letters.enumerated()), id: \.1) { index, letter in
+                            ForEach(Array(questions[currentQuestionIndex].scrambledletters.enumerated()), id: \.1) { index, letter in
                                 LetterView(letter: letter)
                                     .onTapGesture {
                                         if !letter.text.isEmpty {
                                             guessedLetters.append(letter)
-                                            letters[index].text = ""
-                                            if guessedLetters.count == letters.count {
+                                            questions[currentQuestionIndex].scrambledletters[index].text = ""
+                                            if guessedLetters.count == questions[currentQuestionIndex].scrambledletters.count {
                                                 
                                                 let guessedAnswer = guessedLetters.map { $0.text }.joined()
                                                 
-                                                if guessedAnswer == correctAnwer {
+                                                if guessedAnswer == questions[currentQuestionIndex].Answer {
                                                     score += 1
                                                     showSuccess = true
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
