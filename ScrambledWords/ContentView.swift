@@ -54,10 +54,14 @@ struct ContentView: View {
                         .foregroundStyle(Color.white)
                     
                     HStack {
-                        ForEach(letters, id: \.self) { letter in
+                        ForEach(Array(letters.enumerated()), id: \.1) { index, letter in
                             LetterView(character: letter)
                                 .onTapGesture {
-                                    guessedLetters.append(letter)
+                                    if !letter.isEmpty {
+                                        guessedLetters.append(letter)
+                                        letters[index] = ""
+                                    }
+                                    
                                 }
                         }
                     }
